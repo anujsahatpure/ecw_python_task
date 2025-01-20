@@ -2,7 +2,7 @@
 
 ## Interview Assignment for ECW
 
-This is my interview assignment for ECW, implementing a secure Python web application for task management.
+This is my interview assignment for ECW, implementing a  Python web application.
 
 ---
 
@@ -14,11 +14,9 @@ This is a web application that implements a task management system. The applicat
 - **Web Interface**: Easy-to-use web interface built with Flask
 - **Task Management**: Create, read, update, and delete tasks
 - **Task Status**: Mark tasks as complete/incomplete
-- **RESTful APIs**: Complete API support for all operations
 - **Comprehensive Testing**: Includes unit tests with pytest
 - **CI/CD Pipeline**: Automated build and deployment using Jenkins
 - **Code Quality**: Integrated with SonarQube for code quality analysis
-- **Test Coverage**: Maintains high test coverage tracked with coverage.py
 
 ---
 
@@ -28,7 +26,6 @@ This is a web application that implements a task management system. The applicat
 - **Testing**: pytest
 - **CI/CD**: Jenkins
 - **Code Quality**: SonarQube
-- **Coverage**: coverage.py
 
 ---
 
