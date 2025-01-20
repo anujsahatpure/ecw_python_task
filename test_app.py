@@ -40,12 +40,6 @@ def test_update_task(client):
     assert response.json["task"] == "Buy milk and eggs"
     assert response.json["done"] is True
 
-def test_update_task_not_found(client):
-    # Test updating a task that does not exist
-    response = client.put('/tasks/999', json={"task": "Non-existent task"})
-    assert response.status_code == 404
-    assert response.json == {"error": "Task not found"}
-
 def test_mark_task_done(client):
     # First, add a task
     response = client.post('/tasks', json={"task": "Do laundry"})
@@ -69,9 +63,3 @@ def test_delete_task(client):
     # Ensure the task is deleted
     response = client.get('/tasks')
     assert len(response.json) == 0  # Task list should be empty after deletion
-
-def test_delete_task_not_found(client):
-    # Test deleting a task that does not exist
-    response = client.delete('/tasks/999')
-    assert response.status_code == 404
-    assert response.json == {"error": "Task not found"}

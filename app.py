@@ -35,7 +35,7 @@ def add_task():
 def mark_task_done(task_id):
     task = next((t for t in tasks if t["id"] == task_id), None)
     if not task:
-        return jsonify({"error": "Task not found"}), 404
+        return jsonify({"error": "Task not found or already done"}), 404
 
     task["done"] = True
     return jsonify(task)
@@ -44,7 +44,7 @@ def mark_task_done(task_id):
 def update_task(task_id):
     task = next((t for t in tasks if t["id"] == task_id), None)
     if not task:
-        return jsonify({"error": "Task not found"}), 404
+        return jsonify({"error": "Task not found or already exists"}), 404
 
     task.update(request.json)
     return jsonify(task)

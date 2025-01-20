@@ -2,5 +2,5 @@ projectKey=ecw_python_project
 serverUrl=http://localhost:9000
 serverVersion=25.1.0.102122
 dashboardUrl=http://localhost:9000/dashboard?id=ecw_python_project
-ceTaskId=76ec7b8f-3a06-4cfe-9119-8731ecb551a6
-ceTaskUrl=http://localhost:9000/api/ce/task?id=76ec7b8f-3a06-4cfe-9119-8731ecb551a6
+ceTaskId=97dbd192-b46d-4f38-ad4a-7a3b01b5bde4
+ceTaskUrl=http://localhost:9000/api/ce/task?id=97dbd192-b46d-4f38-ad4a-7a3b01b5bde4
