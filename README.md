@@ -1,44 +1,111 @@
-# Caesar Cipher Encryption/Decryption App
+# Task Management Application
 
 ## Interview Assignment for ECW
 
-This is my interview assignment for ECW, where I was asked to implement a simple python application.
+This is my interview assignment for ECW, implementing a secure Python web application for task management.
 
 ---
 
 ## Overview
 
-This is a simple command-line application that implements the Caesar Cipher encryption and decryption technique. The application allows users to encrypt and decrypt text messages using a shift value of their choice. The app works with both uppercase and lowercase letters, and it retains spaces and punctuation marks as they are.
+This is a web application that implements a task management system. The application provides a user-friendly web interface where users can create, update, delete, and mark tasks as complete. The app maintains task state and provides RESTful APIs for all operations.
 
 ### Key Features:
-- **Encrypt Text**: Allows the user to input text and a shift value, then outputs the encrypted text.
-- **Decrypt Text**: Allows the user to input encrypted text and the shift value used for encryption, then outputs the original, decrypted text.
-- **Shift Value**: Users can specify a shift value between 1 and 25 to control the level of encryption.
-- **Command-Line Interface**: The app is menu-driven, making it easy to use via the terminal.
+- **Web Interface**: Easy-to-use web interface built with Flask
+- **Task Management**: Create, read, update, and delete tasks
+- **Task Status**: Mark tasks as complete/incomplete
+- **RESTful APIs**: Complete API support for all operations
+- **Comprehensive Testing**: Includes unit tests with pytest
+- **CI/CD Pipeline**: Automated build and deployment using Jenkins
+- **Code Quality**: Integrated with SonarQube for code quality analysis
+- **Test Coverage**: Maintains high test coverage tracked with coverage.py
 
 ---
 
-## How It Works
+## Technical Stack
 
-The Caesar Cipher works by shifting the letters of the alphabet by a fixed number (the shift value). For example, with a shift of 3, the letter `A` becomes `D`, `B` becomes `E`, and so on. If the shift exceeds `Z`, it wraps around back to `A`.
+- **Backend**: Python with Flask framework
+- **Testing**: pytest
+- **CI/CD**: Jenkins
+- **Code Quality**: SonarQube
+- **Coverage**: coverage.py
 
-This app provides two functionalities:
-1. **Encrypting a Message**: Using a shift value, each letter in the message is shifted by the specified value.
-2. **Decrypting a Message**: This reverses the encryption process by shifting the letters back by the same shift value.
+---
+
+## Project Structure
+
+```
+python-project/
+├── app.py              # Main Flask application
+├── test_app.py         # Unit tests
+├── templates/          # HTML templates
+├── Jenkinsfile        # Jenkins pipeline configuration
+├── sonar-project.properties  # SonarQube configuration
+├── requirements.txt    # Project dependencies
+└── README.md          # Project documentation
+```
 
 ---
 
 ## How to Use the Application
 
-### Step 1: Clone the Repository (or Copy the Code)
+### Step 1: Setup
 
-If you're running this on your local machine, you can copy the Python script, or clone the repository if provided.
+1. Clone the repository
+2. Create a virtual environment:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-### Step 2: Run the Script
+### Step 2: Run the Application
 
-1. Open a terminal window.
-2. Navigate to the directory where the script is located.
-3. Run the Python script by typing:
+1. Start the Flask server:
+   ```bash
+   python app.py
+   ```
+2. Open your web browser and navigate to `http://localhost:5000`
+3. Use the web interface to manage your tasks
 
+---
+
+## API Endpoints
+
+- `GET /tasks`: Retrieve all tasks
+- `POST /tasks`: Create a new task
+- `PUT /tasks/<task_id>`: Update a specific task
+- `DELETE /tasks/<task_id>`: Delete a specific task
+- `PATCH /tasks/<task_id>/done`: Mark a task as complete
+
+---
+
+## Development
+
+### Running Tests
 ```bash
-python caesar_cipher.py
+pytest test_app.py
+```
+
+### Check Coverage
+```bash
+coverage run -m pytest
+coverage report
+```
+
+### Running SonarQube Analysis
+Ensure SonarQube is running locally or configure sonar-project.properties with your SonarQube server details.
+
+---
+
+## CI/CD Pipeline
+
+The project includes a Jenkins pipeline that:
+1. Builds the application
+2. Runs tests
+3. Generates test coverage reports
+4. Performs SonarQube analysis
+5. Deploys the application (if all checks pass)
