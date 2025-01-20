@@ -1,0 +1,58 @@
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+lib/
+lib64/
+pip-wheel-metadata/
+*.manifest
+*.spec
+
+# Virtual Environment
+venv/
+env/
+.venv/
+env.bak/
+venv.bak/
+
+# VSCode
+.vscode/
+
+# Pytest
+*.pytest_cache/
+
+# SonarQube Reports
+sonar-report.json
+sonar-scanner/
+
+# Logs
+*.log
+
+# Operating System
+.DS_Store  # macOS
+Thumbs.db  # Windows
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# IDE-related files (e.g., JetBrains)
+.idea/
+
+# Python coverage files
+.coverage
+coverage.xml
+*.cover
+*.hypothesis/
+
+# Config files
+*.ini
+*.yaml
+*.yml
+*.json

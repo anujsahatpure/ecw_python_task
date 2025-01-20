@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        ul { list-style-type: none; padding: 0; }
+        li { background: #f3f3f3; margin: 5px; padding: 10px; display: flex; justify-content: space-between; width: 300px; margin: auto; align-items: center; }
+        button { margin-left: 10px; padding: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>📝 To-Do List</h1>
+
+    <!-- Add Task Form -->
+    <input type="text" id="taskInput" placeholder="Enter a new task">
+    <button onclick="addTask()">Add Task</button>
+
+    <!-- Task List -->
+    <ul id="taskList">
+        {% for task in tasks %}
+            <li data-id="{{ task['id'] }}">
+                {{ task["task"] }} - {% if task["done"] %} ✅ Done {% else %} ⏳ Pending {% endif %}
+                <button onclick="markDone({{ task['id'] }})">✅</button>
+                <button onclick="deleteTask({{ task['id'] }})">❌</button>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <script>
+        async function addTask() {
+            let taskText = document.getElementById("taskInput").value;
+            if (!taskText.trim()) {
+                alert("Task cannot be empty!");
+                return;
+            }
+            let response = await fetch("/tasks", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ task: taskText })
+            });
+            if (response.ok) {
+                location.reload();
+            } else {
+                alert("Failed to add task!");
+            }
+        }
+
+        async function markDone(taskId) {
+            let response = await fetch(`/tasks/${taskId}/done`, { method: "PUT" });
+            if (response.ok) {
+                location.reload();
+            }
+        }
+
+        async function deleteTask(taskId) {
+            let response = await fetch(`/tasks/${taskId}`, { method: "DELETE" });
+            if (response.ok) {
+                location.reload();
+            }
+        }
+    </script>
+</body>
+</html>
