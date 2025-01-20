@@ -8,8 +8,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout the repository containing the Flask app
-                git 'https://github.com/anujsahatpure/ecw_python_task.git'
+                git branch: "main", url: 'https://github.com/anujsahatpure/ecw_python_task.git'
             }
         }
 
@@ -23,13 +22,22 @@ pipeline {
             }
         }
 
+        stage('Run Tests') {
+            steps {
+                // Run your tests here (pytest, unittest, etc.)
+                script {
+                    sh '. venv/bin/activate && pytest --maxfail=5 --disable-warnings --junitxml=report.xml'
+                }
+            }
+        }
+
         stage('SonarQube Scan') {
             steps {
                 // Run SonarQube analysis with the token
                 script {
                     sh '''
                         $SONAR_SCANNER_HOME/bin/sonar-scanner \
-                        -Dsonar.projectKey=todo_app \
+                        -Dsonar.projectKey=ecw_python_project \
                         -Dsonar.sources=. \
                         -Dsonar.login=$SONARQUBE_TOKEN
                     '''

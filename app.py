@@ -50,10 +50,13 @@ def update_task(task_id):
     return jsonify(task)
 
 
-#Delete task (API)
+# Delete task (API)
 @app.route('/tasks/<int:task_id>', methods=['DELETE'])
 def delete_task(task_id):
     global tasks
+    task_to_delete = next((t for t in tasks if t["id"] == task_id), None)
+    if not task_to_delete:
+        return jsonify({"error": "Task not found"}), 404
     tasks = [t for t in tasks if t["id"] != task_id]
     return jsonify({"message": "Task deleted"}), 200
 
